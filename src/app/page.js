@@ -2,7 +2,7 @@
 export default function Home() {
   return (
     <main>
-      <h1>RealEstate</h1>
+      <h1>پروژه املاک</h1>
     </main>
   );
 }
