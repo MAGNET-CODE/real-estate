@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TextInput from '@/module/TextInput';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import styles from "@/template/AddProfilePage.module.css";
 import RadioList from '@/module/RadioList';
 import TextList from '@/module/TextList';
 import CustomDatePicker from '@/module/CustomDatePicker';
+import { useRouter } from 'next/navigation';
+import Loader from '@/module/Loader';
 
-function AddProfilePage() {
+function AddProfilePage({ data }) {
     const [profileData, setProfileData] = useState({
         title: "",
         description: "",
@@ -21,12 +23,37 @@ function AddProfilePage() {
         rules: [],
         amenities: [],
       });
-      const submitHandler = (e) => {
-        console.log(profileData)
-      }
+
+      const [loading, setLoading] = useState(false);
+
+      useEffect(() => {
+        if (data) setProfileData(data);
+      }, []);
+
+      const router = useRouter();
+
+      const submitHandler = async () => {
+        setLoading(true);
+        const res = await fetch("/api/profile", {
+          method: "POST",
+          body: JSON.stringify(profileData),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+
+        setLoading(false);
+        if (data.error) {
+          toast.error(data.error);
+        } else {
+          toast.success(data.message);
+          router.refresh();
+        }
+      };
+      
   return (
     <div className={styles.container}>
-        <h3>ثبت آگهی</h3>
+        <h3>{data ? "ویرایش آگهی" : "ثبت آگهی"}</h3>
         <TextInput
             title="عنوان آگهی"
             name="title"
@@ -78,9 +105,17 @@ function AddProfilePage() {
             type="rules"
         />
         <CustomDatePicker profileData={profileData} setProfileData={setProfileData} />
-        <button className={styles.submit} onClick={submitHandler}>
+        {loading ? (
+        <Loader />
+            ) : data ? (
+            <button className={styles.submit} onClick={editHandler}>
+            ویرایش آگهی
+            </button>
+            ) : (
+            <button className={styles.submit} onClick={submitHandler}>
             ثبت آگهی
-        </button>
+            </button>
+        )}
         <Toaster />
     </div>
   )

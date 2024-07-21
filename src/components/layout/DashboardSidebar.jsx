@@ -15,7 +15,7 @@ async function DashboardSidebar({ children }) {
         <p>{session.user.email}</p>
         <span></span>
         <Link href="/dashboard">حساب کاربری</Link>
-        <Link href="/dashboard/my-profiles">آگهی های من</Link>
+        <Link href="/dashboard/my-profile">آگهی های من</Link>
         <Link href="/dashboard/add">ثبت آگهی</Link>
         <LogoutButton />
       </div>
