@@ -5,6 +5,7 @@ import TextInput from '@/module/TextInput';
 import { Toaster } from 'react-hot-toast';
 import styles from "@/template/AddProfilePage.module.css";
 import RadioList from '@/module/RadioList';
+import TextList from '@/module/TextList';
 
 function AddProfilePage() {
     const [profileData, setProfileData] = useState({
@@ -19,6 +20,9 @@ function AddProfilePage() {
         rules: [],
         amenities: [],
       });
+      const submitHandler = (e) => {
+        console.log(profileData)
+      }
   return (
     <div className={styles.container}>
         <h3>ثبت آگهی</h3>
@@ -60,6 +64,21 @@ function AddProfilePage() {
             setProfileData={setProfileData}
         />
         <RadioList profileData={profileData} setProfileData={setProfileData} />
+        <TextList
+            title="امکانات رفاهی"
+            profileData={profileData}
+            setProfileData={setProfileData}
+            type="amenities"
+        />
+        <TextList
+            title="قوانین"
+            profileData={profileData}
+            setProfileData={setProfileData}
+            type="rules"
+        />
+        <button className={styles.submit} onClick={submitHandler}>
+            ثبت آگهی
+        </button>
         <Toaster />
     </div>
   )
