@@ -1,8 +1,9 @@
+import AddProfilePage from '@/components/template/AddProfilePage'
 import React from 'react'
 
 function AddProfile() {
   return (
-    <div>AddProfile</div>
+    <AddProfilePage />
   )
 }
 
