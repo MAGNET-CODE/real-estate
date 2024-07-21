@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from 'react'
-import TextInput from '../module/TextInput';
+import TextInput from '@/module/TextInput';
 import { Toaster } from 'react-hot-toast';
 import styles from "@/template/AddProfilePage.module.css";
+import RadioList from '@/module/RadioList';
 
 function AddProfilePage() {
     const [profileData, setProfileData] = useState({
@@ -22,42 +23,43 @@ function AddProfilePage() {
     <div className={styles.container}>
         <h3>ثبت آگهی</h3>
         <TextInput
-        title="عنوان آگهی"
-        name="title"
-        profileData={profileData}
-        setProfileData={setProfileData}
+            title="عنوان آگهی"
+            name="title"
+            profileData={profileData}
+            setProfileData={setProfileData}
         />
         <TextInput
-        title="توضیحات"
-        name="description"
-        profileData={profileData}
-        setProfileData={setProfileData}
-        textarea={true}
+            title="توضیحات"
+            name="description"
+            profileData={profileData}
+            setProfileData={setProfileData}
+            textarea={true}
         />
         <TextInput
-        title="آدرس"
-        name="location"
-        profileData={profileData}
-        setProfileData={setProfileData}
+            title="آدرس"
+            name="location"
+            profileData={profileData}
+            setProfileData={setProfileData}
         />
         <TextInput
-        title="شماره تماس"
-        name="phone"
-        profileData={profileData}
-        setProfileData={setProfileData}
+            title="شماره تماس"
+            name="phone"
+            profileData={profileData}
+            setProfileData={setProfileData}
         />
         <TextInput
-        title="قیمت(تومان)"
-        name="price"
-        profileData={profileData}
-        setProfileData={setProfileData}
+            title="قیمت(تومان)"
+            name="price"
+            profileData={profileData}
+            setProfileData={setProfileData}
         />
         <TextInput
-        title="بنگاه"
-        name="realState"
-        profileData={profileData}
-        setProfileData={setProfileData}
+            title="بنگاه"
+            name="realState"
+            profileData={profileData}
+            setProfileData={setProfileData}
         />
+        <RadioList profileData={profileData} setProfileData={setProfileData} />
         <Toaster />
     </div>
   )
