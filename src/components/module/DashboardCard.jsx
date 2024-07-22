@@ -11,7 +11,7 @@ function DashboardCard({ data }) {
   const router = useRouter();
 
   const editHandler = () => {
-    router.push(`/dashboard/my-profiles/${data._id}`);
+    router.push(`/dashboard/my-profile/${data._id}`);
   };
 
   const deleteHandler = async () => {
@@ -19,7 +19,7 @@ function DashboardCard({ data }) {
       method: "DELETE",
     });
     const result = await res.json();
-    console.log(result);
+
     if (result.error) {
       toast.error(result.error);
     } else {
