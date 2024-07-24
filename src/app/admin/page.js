@@ -8,7 +8,7 @@ import Profile from "@/models/Profile";
 import DashboardSidebar from "@/layout/DashboardSidebar";
 
 export const metadata = {
-  title: "پنل ادمین املاک | پروژه بوتواستارت",
+  title: "پنل ادمین",
 };
 
 async function Admin() {
